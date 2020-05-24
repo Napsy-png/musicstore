@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Muokkaa Teoksen Tietoja</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div>
+		<form th:object="${editLp}" th:action="@{/saveLP}" action="#" method="post">
+
+			<input type="hidden" id="id" th:field="*{id}"/>
+			<label for="title">Levyn nimi </label> 
+			<input type="text" id="title" th:field="${editLp.title}" />
+			<label for="artist">Tekijä</label> 
+			<input type="text" id="artist" th:field="${editLp.artist}" />
+			<label for="year">Vuosi</label> 
+			<input type="text" id="year" th:field="${editLp.year}" /><p>
+			
+			<label for="genres">Genre</label>
+			 <select id="genres" th:field="*{genre}">
+       			<option th:each="genre: ${genres}" 
+       			th:value="${genre.id}" th:text="${genre.name}"></option>
+    		</select></p>
+			<input type="submit" value="Update"></input>
+		</form>
+
+	</div>
+</body>

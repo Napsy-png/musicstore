@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Listed LPs</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>LP Selection</h1>
+	<table>
+		<tr>
+		    <th>Title</th>
+		    <th>Artist</th>
+		    <th>Year</th>
+		</tr>  
+    	<tr th:each = "lp : ${LPs}">
+    		<td th:text="${lp.title}"></td>
+    		<td th:text="${lp.artist}"></td>
+    		<td th:text="${lp.year}"></td>
+    		<td <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/delete/{id}(id=${lp.id})}">Poista</a></td>
+    		<td> <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/edit/{id}(id=${lp.id})}">Muokkaa</a></td>
+    		
+    	</tr>   	
+     </table>
+     
+     
+     <br>
+     
+     <a sec:authorize="hasRole('ROLE_ADMIN')" href= "/addLP">Lisää Teos</a>
+
+</body>
+</html>
